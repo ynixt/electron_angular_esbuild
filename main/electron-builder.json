@@ -1,0 +1,44 @@
+{
+  "asar": true,
+  "directories": {
+    "output": "../release/"
+  },
+  "files": [
+    "**/*",
+    "!**/*.ts",
+    "!*.map",
+    "!package.json",
+    "!package-lock.json",
+    {
+      "from": "dist",
+      "filter": ["**/*"]
+    },
+    {
+      "from": "../renderer/dist/browser",
+      "to": "dist/renderer",
+      "filter": ["**/*"]
+    }
+  ],
+  "compression": "store",
+  "win": {
+    "icon": "dist/assets/icons/renderer",
+    "target": [
+      "zip"
+    ]
+  },
+  "portable": {
+    "splashImage": "dist/assets/icons/renderer/electron.bmp"
+  },
+  "mac": {
+    "icon": "dist/assets/icons/renderer",
+    "target": [
+      "dmg"
+    ]
+  },
+  "linux": {
+    "icon": "dist/assets/icons/renderer",
+    "target": [
+      "AppImage"
+    ]
+  }
+}

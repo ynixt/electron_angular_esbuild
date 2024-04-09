@@ -1,0 +1,22 @@
+{
+  "name": "electron_angular_esbuild",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm-run-all -p dev:main dev:renderer",
+    "dev:watch": "npm-run-all -p watch:main dev:renderer",
+    "dev:main": "npm run --prefix main start",
+    "electron:build": "npm run --prefix renderer build && npm run --prefix main build && npm run --prefix main electron:build",
+    "watch:main": "npm run --prefix main watch main",
+    "dev:renderer": "npm run --prefix renderer start",
+    "lint:fix": "npm run --prefix main lint:fix && npm run --prefix renderer lint:fix",
+    "eslint:fix": "npm run --prefix main eslint:fix && npm run --prefix renderer eslint:fix",
+    "prettier:fix": "npm run --prefix main prettier:fix && npm run --prefix renderer prettier:fix"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}

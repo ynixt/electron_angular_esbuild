@@ -1,0 +1,27 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parserOptions": {
+        "project": ["tsconfig.json"],
+        "createDefaultProgram": true
+      },
+      "extends": ["plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["**/main/src/renderer/**"],
+                "message": "You shouldn't import renderer stuff on main"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
