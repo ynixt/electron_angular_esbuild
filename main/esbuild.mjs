@@ -102,14 +102,22 @@ function kill(electronProcess) {
     }
 
     const waitForExitCode = () => {
-      return new Promise(resolve => {
+      return new Promise((resolve, reject) => {
+        const timeout = 50;
+        const limit = 10000;
+        let timeWasted = 0;
         setTimeout(() => {
           if (electronProcess.exitCode == null) {
-            waitForExitCode().then(() => resolve());
+            if (timeWasted >= limit) {
+              reject('timeout');
+            } else {
+              waitForExitCode().then(() => resolve());
+            }
+            timeWasted += timeout;
           } else {
             resolve();
           }
-        }, 50);
+        }, timeout);
       });
     };
 
